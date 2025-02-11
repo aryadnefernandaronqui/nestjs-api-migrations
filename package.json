@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrations": "knex migrate:latest",
+    "migrations:homolog": "NODE_ENV=homolog knex migrate:latest",
+    "migrations:prod": "NODE_ENV=production knex migrate:latest",
+    "seeds": "knex seed:run",
+    "seeds:homolog": "NODE_ENV=homolog knex seed:run"
   },
   "keywords": [],
   "author": "",

@@ -1,9 +1,7 @@
-import { config as dotenvConfig } from 'dotenv';
-import { Knex } from 'knex';
+const dotenv = require('dotenv');
+dotenv.config();
 
-dotenvConfig(); // Carrega as variáveis de ambiente
-
-const config: { [key: string]: Knex.Config } = {
+module.exports = {
   development: {
     client: 'pg',
     connection: {
@@ -23,7 +21,19 @@ const config: { [key: string]: Knex.Config } = {
     seeds: {
       directory: './seeds'
     }
+  },
+  readReplica: {
+    client: 'pg',
+    connection: {
+      host: process.env.DB_READ_HOST, 
+      port: Number(process.env.DB_PORT),
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+    },
+    pool: {
+      min: 2,
+      max: 10
+    }
   }
 };
-
-export default config;
