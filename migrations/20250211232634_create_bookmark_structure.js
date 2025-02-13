@@ -7,7 +7,7 @@ exports.up = function(knex) {
     table.string('author', 255).notNullable();
     table.string('description', 255).notNullable();
     table.string('link', 255).notNullable();
-
+    table.uuid('user_id').notNullable().references('uid').inTable('users').onDelete('CASCADE');
     basics(knex, table);
   });
 
